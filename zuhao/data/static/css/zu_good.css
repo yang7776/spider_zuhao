@@ -1,0 +1,84 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body, html {
+    background: #f2f2f2;
+    font-size: 10px;
+}
+.container-fluid img {
+    width: 100%;
+    border-radius: 5px;
+}
+.container-fluid .col-xs-4 {
+    padding: 0;
+}
+.container-fluid .col-xs-8 {
+    padding: 0;
+}
+.container-fluid .row {
+    background: white;
+}
+.col-xs-8 h3 {
+    font-size: 1.6rem;
+    margin: 0;
+    color: black;
+    font-weight: bold;
+}
+.col-xs-8 .zh {
+    color: gray;
+    font-size: .9rem;
+}
+.col-xs-8 .zz  span{
+    padding: 3px 5px;
+    border-radius: 20% 20% 20% 20%/50% 50% 50% 50%;
+    border: 1px solid red;
+    color: red;
+    background: #ffd9c5;
+}
+.col-xs-8 .zz span:nth-child(2) {
+    padding: 3px 10px;
+    margin-left: 5px;
+}
+.col-xs-8 .zc {
+    font-size: 1.1rem;
+    color: gray;
+}
+.price {
+    overflow: hidden;
+}
+.shang, .pei{
+    padding: 3px;
+    background: skyblue;
+    color: blue;
+    border-radius: 1px;
+    float: left;
+}
+.pei {
+    padding: 3px;
+    background: rgba(255,0,0,.2);
+    color: #f78b15;
+    margin-left: 15px;
+    border-radius: 1px;
+}
+.dj {
+    font-size: 1.6rem;
+    color: black;
+    float: right;
+    font-weight: bold;
+}
+.dj span {
+    font-size: 1.2rem;
+    color: gray;
+    font-weight: normal;
+}
+.col-xs-8 div, .col-xs-8 h3 {
+    margin-bottom: 5px;
+}
+
+.container-fluid .col-xs-4 {
+    padding-right: 10px;
+}
+.row {
+    margin-bottom: 10px;
+}

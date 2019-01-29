@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'css/zu_good.css' %}">
+    <style type="text/css">
+        #imgs {
+            width: 80%;
+            border-radius: .5rem;
+        }
+        .imgs{
+            margin:0 -2rem 0 1rem;
+        }
+        #logo{
+            font-size: 1.7rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0;
+            height: 5rem;
+            line-height: 5rem;
+        }
+        .container-fluid .row:nth-child(2){
+            padding: .7rem 2rem;
+        }
+        .info1 div{
+            margin: 1rem 0;
+        }
+        #fonth3{
+            margin-top: 0;
+        }
+        #fonth3 h3{
+            font-size: 1.5rem;
+        }
+        #row3{
+            margin: 1rem auto;
+            border-radius: .5rem;
+            width: 97%;
+        }
+        #row3 .col-xs-2:nth-child(1){
+            margin-left: 5%;
+            border-radius: .5rem 0 0 .5rem;
+        }
+        #row3 .col-xs-2 div{
+            padding: 1rem 0;
+            margin: 0;
+        }
+        #row3 .time{
+            width: 5rem;
+            white-space: nowrap;
+            text-align: center;
+        }
+        #row3 .price{
+            width: 5rem;
+            white-space: nowrap;
+            color: gray;
+            text-align: center;
+        }
+        #row4 div{
+            margin: 2rem 0;
+            margin-left: 3rem;
+        }
+        #row4 div span{
+            margin: 2rem 1rem;
+            font-size: 1.3rem;
+        }
+        #row4 div span:nth-child(1){
+            color: gray;
+        }
+        .z7 {
+            padding: 3px 5px;
+            border-radius: 20% 20% 20% 20%/50% 50% 50% 50%;
+            color: red;
+            background: #ffd9c5;
+        }
+        #intro p:nth-child(1){
+            font-size: 1.7rem;
+            font-weight: bold;
+        }
+        #intro p:nth-child(2){
+            font-size: 1.3rem;
+        }
+        #intro1{
+            width: 26rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    userid = localStorage.getItem('userid');
+    $.ajax({
+        url:'{% url "infor_three" %}',
+        data:'userid='+userid,
+        success:function(res){
+            let obj = JSON.parse(res);
+            let good = obj.data;
+            let mark = `
+<div class="row" id="logo">
+            账号详情
+        </div>
+        <div class="row" style="margin-bottom: 0">
+            <div class="col-xs-4 imgs">
+                <img src="https://${good.imgurl}" alt="" class="rounded" id="imgs">
+            </div>
+            <div class="col-xs-8 info1">
+                <div id="fonth3"><h3>${good.pn}</h3></div>
+                <div>
+                    <span class="zh">${good.c_rank}次租赁，共${good.sc}小时</span>
+                </div>
+                <div class="price">
+                    <span class="shang">商</span>
+                    <span class="pei">赔</span>
+                    <span class="dj">￥${good.pmoney}<span>/时</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="row3">
+            <div class="col-xs-2">
+                <div class="time" style="color: white;background:#f0543e;">
+                    时租
+                </div>
+                <div class="price" style="color: white;background:#f0543e;">
+                    ${good.pmoney}元
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="time">
+                    包夜
+                </div>
+                <div class="price">
+                    ${good.p8}元
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="time">
+                    十小时
+                </div>
+                <div class="price">
+                    ${good.p10}元
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="time">
+                    日租
+                </div>
+                <div class="price">
+                    ${good.p24}元
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="time">
+                    周租
+                </div>
+                <div class="price">
+                    ${good.p168}元
+                </div>
+            </div>
+        </div>
+        <div class="row" id="row4">
+            <div>
+                <span>账号状态</span>
+                <span class="z7">${good.haoZtMap}</span>
+            </div>
+            <div>
+                <span>游戏区服</span>
+                <span>${good.game_zone_name}|${good.game_server_name}</span>
+            </div>
+            <div>
+                <span>租号条件</span>
+                <span class="z7">一小时起租</span>
+                <span class="z7">免押金</span>
+            </div>
+            <div>
+                <span>可租时间</span>
+                <span>0:00-24:00; ${good.szq}-${good.hzq}(小时)</span>
+            </div>
+            <div>
+                <span>上号方式</span>
+                <span>${good.shfs}</span>
+            </div>
+            <div id="intro">
+                <p>账号描述</p>
+                <p id="intro1">${good.youxi}</p>
+            </div>
+        </div>`;
+            $('.container-fluid').append(mark);
+        }
+    })
+</script>
+</html>

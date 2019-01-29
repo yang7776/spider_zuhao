@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>租号详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'css/zu_good.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+
+    </div>
+
+</body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    // 存储当前是否有请求正在进行
+    let or_request = false;
+    let page = 0;
+    // 定义函数完成数据请求
+    function get_goods() {
+        if (or_request == false){
+            or_request = true;
+            page++;
+            gameId = localStorage.getItem('gameId');
+        $.ajax({
+           url: '{% url "gzi" %}',
+           data:  'gameId='+gameId+"&page="+page,
+           success: function (res) {
+               let obj = JSON.parse(res);
+               if (obj.code == 400){
+                   alert(obj.msg);
+               }else {
+                   for (let i = 0; i < obj.data.length; i++){
+                       let good = obj.data[i];
+                       let mark = `
+<a href="{% url 'user_info' %}" class="${good.id}">
+    <dov class="row">
+            <div class="col-xs-4">
+                <img src="https://${good.imgurl}" alt="" class="rounded">
+            </div>
+            <div class="col-xs-8">
+                <h3>${good.pn}</h3>
+                <div class="zh">${good.game_server_name}/${good.game_zone_name}</div>
+                <div class="zz">
+                    <span>1小时起租</span>
+                    <span>免押金</span>
+                </div>
+                <div class="zc">
+                    近期${good.c_recent_rank}次租赁
+                </div>
+                <div class="price">
+                    <span class="shang">商</span>
+                    <span class="pei">赔</span>
+                    <span class="dj">￥${good.pmoney}<span>/时</span></span>
+                </div>
+            </div>
+        </dov>
+</a>`;
+                       $('.container-fluid').append(mark);
+
+                   }
+                   $('.container-fluid a').click(function () {
+                        localStorage.setItem('userid', $(this).attr('class'));
+                        window.location.href = 'www.baidu.com';
+                    });
+                   or_request = false;
+               }
+           }
+        });
+        }
+    }
+    get_goods();
+
+    // 定义函数完成页面是否到低端的检测
+    $(window).on('scroll', function () {
+        let scroll_height = $(window).scrollTop();
+        let win_height = $(window).height();
+        let body_height = $('body').height();
+        if ((scroll_height+win_height+20) >= body_height){
+            get_goods();
+        }else if (scroll_height <= 0){
+            page = 0;
+            $('.container-fluid').empty();
+            get_goods();
+        }
+
+    })
+</script>
+</html>

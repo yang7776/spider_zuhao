@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body, html {
+    font-size: 10px;
+    background: #f2f2f2;
+}
+.container-fluid {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    background: #ffffff;
+    overflow: hidden;
+
+}
+.container-fluid .input-group {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.container-fluid .col-xs-2 {
+    padding: 0 4%;
+
+}
+.container-fluid .middle {
+    margin-left: 3.6%;
+}
+.container-fluid a {
+    color: grey;
+    display: block;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: .5rem 0;
+}
+.container-fluid .row {
+    position: relative;
+}
+.line {
+    width: 30px;
+    height: 3px;
+    background: red;
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+}
+.container .col-xs-4 {
+    padding: 0 5px;
+    margin-top: 10px;
+}
+.container img {
+    width: 30%;
+}
+.container a {
+    display: block;
+    text-align: center;
+    background: #ffffff;
+    padding: 10%;
+    box-shadow: 2px 2px 4px lightgrey;
+    border-radius: 3px;
+}
+.container span {
+    color: black;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.container {
+    margin-top: 80px;
+    width: 90%;
+}
